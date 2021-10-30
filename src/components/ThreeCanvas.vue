@@ -1,5 +1,6 @@
 <template>
   <canvas class="canvas" ref="canvas" @click="toggleAudio" />
+  <div class="instruction" v-if="!audioInitialised">click anywhere to play</div>
 </template>
 
 <script>
@@ -16,7 +17,7 @@ import {
 } from "@/helpers/three";
 import { Kick, Snare, Hat, Pad, Bleep } from "@/helpers/tone";
 
-let audioInitialised = false;
+let audioInitialised = ref(false);
 let canvas = ref(null);
 let counter = -1;
 let shapes = [];
@@ -68,8 +69,8 @@ function setUpTone() {
 export default {
   setup() {
     let toggleAudio = async () => {
-      if (!audioInitialised) {
-        audioInitialised = true;
+      if (!audioInitialised.value) {
+        audioInitialised.value = true;
         await Tone.start();
         setUpTone();
       }
@@ -80,6 +81,12 @@ export default {
         Tone.Transport.pause();
       }
     };
+
+    document.addEventListener("keydown", ({ key }) => {
+      if (key === " ") {
+        toggleAudio();
+      }
+    });
 
     onMounted(() => {
       let { scene, renderer, camera } = setUpScene(canvas.value);
@@ -94,14 +101,30 @@ export default {
       })();
     });
 
-    return { canvas, toggleAudio };
+    return { audioInitialised, canvas, toggleAudio };
   },
 };
 </script>
 
 <style scoped>
-.canvas {
+.canvas,
+.instruction {
   height: 100vh;
   width: 100vw;
+}
+
+.instruction {
+  align-items: center;
+  color: yellow;
+  display: flex;
+  font-family: monospace;
+  font-size: 4rem;
+  font-weight: bold;
+  justify-content: center;
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  text-transform: uppercase;
+  top: 0;
 }
 </style>
