@@ -9,6 +9,9 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "gsap": "^3.8.0",
+    "three": "^0.134.0",
+    "tone": "^14.7.77",
     "vue": "^3.0.0"
   },
   "devDependencies": {
@@ -32,7 +35,10 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "no-console": "warn",
+      "no-unused-vars": "warn"
+    }
   },
   "browserslist": [
     "> 1%",
