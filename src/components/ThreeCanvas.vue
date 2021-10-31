@@ -1,5 +1,5 @@
 <template>
-  <canvas class="canvas" ref="canvas" @click="toggleAudio" />
+  <canvas class="canvas" ref="canvas" @click="toggle" />
   <div class="instruction" v-if="!audioInitialised">click anywhere to play</div>
 </template>
 
@@ -14,12 +14,16 @@ let audioInitialised = ref(false);
 let canvas = ref(null);
 let shapes = ref([]);
 
+function toggle() {
+  if (shapes.value.length) {
+    toggleAudio(audioInitialised, shapes);
+  }
+}
+
 export default {
   setup() {
     document.addEventListener("keydown", ({ key }) => {
-      if (key === " " && shapes.value.length > 0) {
-        toggleAudio(audioInitialised, shapes);
-      }
+      if (key === " ") toggle();
     });
 
     onMounted(() => {
@@ -29,7 +33,7 @@ export default {
       render({ scene, camera, renderer });
     });
 
-    return { audioInitialised, canvas, toggleAudio };
+    return { audioInitialised, canvas, toggle };
   },
 };
 </script>
