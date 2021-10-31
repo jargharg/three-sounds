@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { addLights } from ".";
 
 export function setUpScene(canvas) {
   let scene = new THREE.Scene();
@@ -27,6 +28,8 @@ export function setUpScene(canvas) {
     },
     false
   );
+
+  addLights(scene);
 
   return { scene, camera, renderer };
 }

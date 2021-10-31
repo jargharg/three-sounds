@@ -1,5 +1,4 @@
-export { Kick } from "./Kick";
-export { Snare } from "./Snare";
-export { Hat } from "./Hat";
-export { Pad } from "./Pad";
-export { Bleep } from "./Bleep";
+export { getPosition } from "./getPosition";
+export { setUpTone } from "./setUpTone";
+export { toggleAudio } from "./toggleAudio";
+export * from "./classes";
