@@ -1,3 +1,4 @@
+export { addCheckerboard } from "./addCheckerboard";
 export { addLights } from "./addLights";
 export { addShapes } from "./addShapes";
 export { animateCamera } from "./animateCamera";

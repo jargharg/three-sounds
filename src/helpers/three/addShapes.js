@@ -1,9 +1,10 @@
 import * as THREE from "three";
 
 function createShape(x = 0, y = 0, z = 0) {
+  let height = 50;
   let color = new THREE.Color("#fff");
 
-  let geometry = new THREE.ConeGeometry(20, 50, 80);
+  let geometry = new THREE.ConeGeometry(20, height, 80);
 
   let material = new THREE.MeshLambertMaterial({
     color: color.getHex(),
@@ -11,8 +12,8 @@ function createShape(x = 0, y = 0, z = 0) {
   });
 
   let shape = new THREE.Mesh(geometry, material);
-  shape.position.y = y;
   shape.position.x = x;
+  shape.position.y = y + height / 2;
   shape.position.z = z;
   shape.rotation.z = Math.PI;
 

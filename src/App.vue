@@ -22,6 +22,7 @@ body {
   width: 100vw;
   margin: 0;
   padding: 0;
-  background: slategray;
+  background: darkslategray;
+  overflow: hidden;
 }
 </style>

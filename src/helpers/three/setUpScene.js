@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { addLights } from ".";
+import { addCheckerboard, addLights } from ".";
 
 export function setUpScene(canvas) {
   let scene = new THREE.Scene();
@@ -30,6 +30,7 @@ export function setUpScene(canvas) {
   );
 
   addLights(scene);
+  addCheckerboard(scene);
 
   return { scene, camera, renderer };
 }
